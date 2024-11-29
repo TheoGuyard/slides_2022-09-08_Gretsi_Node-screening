@@ -1,0 +1,57 @@
+\forestset{
+    node/.style = {
+        draw, 
+        circle,
+        thick,
+        align = center,
+        font = \small,
+        top color = white,
+        bottom color = blue!25,
+    },
+    branch label/.style={
+        edge label = {
+            node[midway,fill=white,font=\small,draw=black,text height=0.5em,scale=0.9]{#1}
+        }
+    },
+    bnb/.style={
+        branch label,
+        for tree = {
+            node,
+            s sep'+=14mm,
+            l sep'+=2mm,
+            edge={->, thick, draw opacity=0.2, text opacity = 0.3},
+            opacity = 0.25,
+            text opacity = 0.25,
+        },
+        before typesetting nodes={
+            for tree={
+                split option={content}{:}{content,branch label},
+            },
+        },
+        where n children=0{
+            tikz+={
+                \draw [thick,dashed,->,opacity=0.25] ([yshift=0pt, xshift=0pt].south east) -- ([yshift=-5pt, xshift=5pt].south east);
+                \draw [thick,dashed,->,opacity=0.25]  ([yshift=0pt, xshift=0pt].south west) -- ([yshift=-5pt, xshift=-5pt].south west);
+            }
+        }{},
+    },
+}
+\begin{forest}
+    bnb,
+    [\(\nodeSymbIter{0}\),name=root,opacity=1,text opacity=1
+        [\(\nodeSymbIter{1}\):\({\pve{\idxentrynode_1}=0}\)
+            [\(\nodeSymbIter{3}\):\({\pve{\idxentrynode_2}=0}\),name=S3,opacity=1,text opacity=1] {
+                \draw [thick,dashed,->] ([yshift=0pt, xshift=0pt].south east) -- ([yshift=-5pt, xshift=5pt].south east);
+                \draw [thick,dashed,->]  ([yshift=0pt, xshift=0pt].south west) -- ([yshift=-5pt, xshift=-5pt].south west);
+                \draw[thick,->] (root.west) .. controls (-3.8,0) .. (S3.north);
+                \node[draw,thick,top color = white,
+                bottom color = orange!25,,font=\scriptsize,align=center] at (-3.3,-0.4) (scr) {\bf Node-screening \\ Fix \({\pve_{\idxentrynode_1}=0}\) \\ Fix \({\pve_{\idxentrynode_2}=0}\)};
+            }
+            [\(\nodeSymbIter{4}\):\({\pve{\idxentrynode_2}\neq0}\)]
+        ]
+        [\(\nodeSymbIter{2}\):\({\pve{\idxentrynode_1}\neq0}\),
+            [\(\nodeSymbIter{5}\):\({\pve{\idxentrynode_2}=0}\)]
+            [\(\nodeSymbIter{6}\):\({\pve{\idxentrynode_2}\neq0}\)]
+        ]
+    ]
+\end{forest}

@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+    \draw[thick,->] (0,0) -- (6,0);
+    \node at (6.5,0.05) (axis_text) {value};
+
+    \node at (2,0) (pv1) {};
+    \draw[thick,teal] (pv1.north) -- (pv1.south);
+    \node[teal] at (2,-0.4) (pv1_text) {$\node{\robj}$};
+
+    \pause
+    \node at (1,0) (dv1) {};
+    \draw[thick,teal] (dv1.north) -- (dv1.south);
+    \node[teal] at (1,-0.4) (dv1_text) {$\node{\dfunc}(\dv)$};
+    \draw[thick,teal,->] (pv1) .. controls (1.5,0.5) and (1.5,0.5) .. (dv1);
+    \node[teal] at (1.5,0.6) (dv1_arrow_text) {\scriptsize dualize};
+
+    \pause
+    \node at (4,0) (dv2) {};
+    \draw[thick,orange] (dv2.north) -- (dv2.south);
+    \node[orange] at (4,-0.4) (dv2_text) {$\dfunc^{\nodePlusZero{\nodeSymb}{\idxentry}}(\dv)$};
+    \draw[thick,orange,->] (dv1_text.south) .. controls (2.5,-1.5) and (2.5,-1.5) .. (dv2_text.south);
+    \node[orange] at (2.5,-1.6) (dv1_arrow_text) {\scriptsize $+[\pivot{}{}(\ktranspose{\atom}_{\idxentry}\dv)]_+$};
+
+    \pause
+    \node at (2.5,0) (ub) {};
+    \draw[thick,red] (ub.north) -- (ub.south);
+    \node[red] at (2.5,-0.4) (ub_text) {$\UB{\pobj}$};
+
+\end{tikzpicture}

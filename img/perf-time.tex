@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+    \begin{axis}[
+        width   = \linewidth,
+        height  = \linewidth,
+        xlabel  = $\sparsitylevel$,
+        ylabel  = Solve time,
+        legend style={
+            at={(0.02,0.98)}, 
+            anchor=north west
+        },
+    ]
+
+        \legend{\texttt{BnB},\texttt{BnB+scr}}
+        
+        \pgfplotstableread[col sep=comma]{img/m=500_n=1000_rho=0.1_s=10dB.dat}{\data}
+        
+        \addplot[
+            blue,
+            line width=2pt
+        ] table [x={k}, y={bnb-l1_solve_time_mean}] {\data};
+
+        \addplot[
+            orange,
+            line width=2pt
+        ] table [x={k}, y={bnb-l0l1_solve_time_mean}] {\data};
+
+        \end{axis}
+\end{tikzpicture}

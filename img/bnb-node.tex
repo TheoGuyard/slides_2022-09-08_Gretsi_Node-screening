@@ -1,0 +1,40 @@
+\forestset{
+    node/.style = {
+        draw, 
+        circle,
+        thick,
+        align = center,
+        font = \small,
+        top color = white,
+        bottom color = blue!25,
+    },
+    branch label/.style={
+        edge label = {
+            node[midway,fill=white,font=\small,draw=black,text height=0.5em,scale=0.9]{#1}
+        }
+    },
+    bnb/.style={
+        branch label,
+        for tree = {
+            node,
+            s sep'+=14mm,
+            l sep'+=2mm,
+            edge={->},
+            edge+={dashed,thick},
+        },
+        before typesetting nodes={
+            for tree={
+                split option={content}{:}{content,branch label},
+            },
+        },
+    },
+}
+\begin{forest}
+    bnb,
+    [
+        \(\nodeSymbIter{0}\)
+        [
+            \(\nodeSymbIter{k}\)
+        ]
+    ]
+\end{forest}
